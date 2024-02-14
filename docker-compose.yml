@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  api:
+    volumes:
+      - .:/app
+      - static:/static
+    env_file:
+      - .env
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+    networks:
+      - postgres
+      - api
+    ports:
+      - "8000:8000"
+
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres:/data/postgres
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  api:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
+  static:
+    
