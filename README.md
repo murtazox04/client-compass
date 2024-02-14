@@ -59,9 +59,13 @@ To launch the Client Compass project using Docker, ensure you have Docker instal
 1. Create a `.env` file in the project root directory and define the following environment variables:
 
    ```plaintext
+   ENV_TYPE=your_env_type
+   DEBUG=true_or_false
    DB_NAME=client_compass_db
    DB_USER=your_db_user
    DB_PASSWORD=your_db_password
+   DB_HOST=your_db_host
+   DB_PORT=your_db_port
    ```
 
 2. Build and run the Docker containers:
